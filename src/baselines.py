@@ -1,11 +1,4 @@
-"""
-baselines.py - a deliberately simple generator used as a CONTROL experiment.
-
-MarginalGenerator samples every feature independently, given the class (churn / no churn).
-It knows each feature's mean/spread but nothing about how features relate to each other.
-If the VAE beats it, we have evidence the VAE really learned customer structure
-(and is not just reproducing the average customer).
-"""
+"""Control generator that samples every feature on its own, given the class."""
 import numpy as np
 
 
@@ -26,7 +19,7 @@ class MarginalGenerator:
             Xc = X[y == c] if np.any(y == c) else X
             self.mean[c] = Xc.mean(axis=0)
             self.std[c] = Xc.std(axis=0)
-        return []                                  # nothing to log (no training loop)
+        return []
 
     def sample(self, n, y=None):
         if y is None:
@@ -34,7 +27,8 @@ class MarginalGenerator:
         y = np.asarray(y, dtype=np.int64)
         mu, sd = self.mean[y], self.std[y]
         continuous = np.clip(mu + sd * self.rng.standard_normal(mu.shape), 0.0, 1.0)
-        binary = (self.rng.random(mu.shape) < mu).astype(np.float32)   # mean of a 0/1 column = P(1)
+        # the mean of a 0/1 column is the probability of a 1
+        binary = (self.rng.random(mu.shape) < mu).astype(np.float32)
         X = np.where(self.numeric_mask, continuous, binary).astype(np.float32)
         return X, y
 
