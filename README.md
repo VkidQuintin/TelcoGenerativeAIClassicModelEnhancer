@@ -84,10 +84,9 @@ git init
 git add .
 git commit -m "Pipeline, CVAE, replay engine, CLI"
 git branch -M main
-git remote add origin <your-repo-url>
+git remote add origin https://github.com/VkidQuintin/TelcoGenerativeAIClassicModelEnhancer
 git push -u origin main
 ```
-Commit after every step (e.g. "Add forgetting graph", "Tune VAE") so the history shows your progress.
 
 ## Known limitations
 * Scaling ranges are fitted on all training rows (assumes fixed feature ranges); high-cardinality categoricals are dropped.
