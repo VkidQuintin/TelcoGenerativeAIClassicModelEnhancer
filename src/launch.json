@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "1. Smoke tests",              "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/main.py", "args": ["test"],       "console": "integratedTerminal", "cwd": "${workspaceFolder}" },
+    { "name": "2. Data snapshots (eda)",     "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/main.py", "args": ["eda"],        "console": "integratedTerminal", "cwd": "${workspaceFolder}" },
+    { "name": "3. Forgetting test + graph",  "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/main.py", "args": ["forgetting"], "console": "integratedTerminal", "cwd": "${workspaceFolder}" },
+    { "name": "4. QUICK full run",           "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/main.py", "args": ["run", "--n-seeds", "1", "--vae-epochs", "30"], "console": "integratedTerminal", "cwd": "${workspaceFolder}" },
+    { "name": "5. FINAL full run (5 seeds)", "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/main.py", "args": ["run", "--n-seeds", "5"], "console": "integratedTerminal", "cwd": "${workspaceFolder}" },
+    { "name": "6. Generate 20 customers",    "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/main.py", "args": ["generate", "--n", "20"], "console": "integratedTerminal", "cwd": "${workspaceFolder}" }
+  ]
+}
